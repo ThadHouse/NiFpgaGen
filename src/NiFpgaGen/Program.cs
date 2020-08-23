@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NiFpgaGen.DataTypes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,45 +10,45 @@ using System.Xml.Linq;
 
 namespace NiFpgaGen
 {
-    public enum DataType
-    {
-        Array,
-        Boolean,
-        Cluster,
-        FXP,
-        EnumU16,
-        U8,
-        I8,
-        I16,
-        U16,
-        I32,
-        U32,
-        U64,
-        I64
-    }
+    //public enum DataType
+    //{
+    //    Array,
+    //    Boolean,
+    //    Cluster,
+    //    FXP,
+    //    EnumU16,
+    //    U8,
+    //    I8,
+    //    I16,
+    //    U16,
+    //    I32,
+    //    U32,
+    //    U64,
+    //    I64
+    //}
 
-    public class Register
-    {
-        public string Name { get; set; }
-        public bool Hidden { get; }
-        public bool Indicator { get; }
-        public DataType DataType { get; }
-        public uint Offset { get; }
-        public XElement ExtraData { get; }
+    //public class Register
+    //{
+    //    public string Name { get; set; }
+    //    public bool Hidden { get; }
+    //    public bool Indicator { get; }
+    //    public DataType DataType { get; }
+    //    public uint Offset { get; }
+    //    public XElement ExtraData { get; }
 
-        public List<(int, uint)> OffsetList = new List<(int, uint)>();
+    //    public List<(int, uint)> OffsetList = new List<(int, uint)>();
 
-        public Register(XElement element)
-        {
-            Name = element.Element("Name").Value;
-            Hidden = bool.Parse(element.Element("Hidden").Value);
-            Indicator = bool.Parse(element.Element("Indicator").Value);
-            DataType = Enum.Parse<DataType>(((XElement)element.Element("Datatype").FirstNode).Name.LocalName);
-            Offset = uint.Parse(element.Element("Offset").Value);
-            ExtraData = element;
-            ;
-        }
-    }
+    //    public Register(XElement element)
+    //    {
+    //        Name = element.Element("Name").Value;
+    //        Hidden = bool.Parse(element.Element("Hidden").Value);
+    //        Indicator = bool.Parse(element.Element("Indicator").Value);
+    //        DataType = Enum.Parse<DataType>(((XElement)element.Element("Datatype").FirstNode).Name.LocalName);
+    //        Offset = uint.Parse(element.Element("Offset").Value);
+    //        ExtraData = element;
+    //        ;
+    //    }
+    //}
 
     class Program
     {
@@ -59,11 +60,22 @@ namespace NiFpgaGen
 
             XElement bitfile = await XElement.LoadAsync(file, LoadOptions.None, CancellationToken.None);
 
-            var registerList = bitfile.Descendants("VI").Descendants("RegisterList").Descendants("Register").Select(x => new Register(x));
+            //var registerList = bitfile.Descendants("VI").Descendants("RegisterList").Descendants("Register").Select(x => new Register(x));
 
-            var frcMapping = new FRCMapping(registerList);
+            var registerList2 = bitfile.Descendants("VI").Descendants("RegisterList").Descendants("Register");
 
-            frcMapping.GenerateC(@"C:\Users\thadh\Documents\GitHub\thadhouse\NiFpgaGen\Generated", "FRC");
+            DataTypeFactory factory = DataTypeFactory.Instance;
+
+            List<Register> registers = new List<Register>();
+
+            foreach (var register in registerList2)
+            {
+                registers.Add(new Register(register));
+            }
+
+            //var frcMapping = new FRCMapping(registerList);
+
+            //frcMapping.GenerateC(@"C:\Users\thadh\Documents\GitHub\thadhouse\NiFpgaGen\Generated", "FRC");
 
             ;
         }
