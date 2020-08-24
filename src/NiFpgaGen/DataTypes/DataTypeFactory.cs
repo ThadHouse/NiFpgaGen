@@ -12,7 +12,7 @@ namespace NiFpgaGen.DataTypes
     {
         public static DataTypeFactory Instance => new DataTypeFactory();
 
-        private ImmutableDictionary<string, Func<string, XElement, IDataType>> dataTypeCreators;
+        private readonly ImmutableDictionary<string, Func<string, XElement, IDataType>> dataTypeCreators;
 
         private DataTypeFactory()
         {

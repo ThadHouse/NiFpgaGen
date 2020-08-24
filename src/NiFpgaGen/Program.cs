@@ -1,4 +1,5 @@
 ﻿using NiFpgaGen.DataTypes;
+using NiFpgaGen.FRC;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -62,7 +63,7 @@ namespace NiFpgaGen
 
             //var registerList = bitfile.Descendants("VI").Descendants("RegisterList").Descendants("Register").Select(x => new Register(x));
 
-            var registerList2 = bitfile.Descendants("VI").Descendants("RegisterList").Descendants("Register");
+            var registerList2 = bitfile.Element("VI").Element("RegisterList").Elements("Register");
 
             DataTypeFactory factory = DataTypeFactory.Instance;
 
@@ -72,6 +73,14 @@ namespace NiFpgaGen
             {
                 registers.Add(new Register(register));
             }
+
+            var frcRegisters = FRCClass.GetDefaultClassList();
+            foreach (var register in registers)
+            {
+                FRCClass.AddRegisterToClassList(frcRegisters, register);
+            }
+
+            FRCClass.ValidateClasses(frcRegisters);
 
             //var frcMapping = new FRCMapping(registerList);
 

@@ -24,5 +24,19 @@ namespace NiFpgaGen
             Indicator = bool.Parse(element.Element("Indicator").Value);
             Offset = uint.Parse(element.Element("Offset").Value);
         }
+
+        private Register(Register oldRegister, string newName)
+        {
+            Name = newName;
+            DataType = oldRegister.DataType;
+            Hidden = oldRegister.Hidden;
+            Indicator = oldRegister.Indicator;
+            Offset = oldRegister.Offset;
+        }
+
+        public Register CloneWithName(string name)
+        {
+            return new Register(this, name);
+        }
     }
 }
