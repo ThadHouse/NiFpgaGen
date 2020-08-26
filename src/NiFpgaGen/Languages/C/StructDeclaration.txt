@@ -1,0 +1,5 @@
+typedef struct {{name}} {
+    {{#each field}}
+    {{type}} {{var_name}} : {{bit_size}}
+    {{/each}}
+} {{name}};

@@ -1,0 +1,40 @@
+#pragma once
+
+#include "{{DefinitionsFileName}}.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+{{#each struct_declaration}}
+{{declaration}}
+
+{{/each}}
+
+{{#each global_function_declaration}}
+{{get_declaration}}
+
+{{set_declaration}}
+
+
+{{/each}}
+
+{{#each system_function_declaration}}
+{{get_declaration}}
+
+{{set_declaration}}
+
+
+{{/each}}
+
+{{#each instance_function_declaration}}
+{{get_declaration}}
+
+{{set_declaration}}
+
+
+{{/each}}
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif

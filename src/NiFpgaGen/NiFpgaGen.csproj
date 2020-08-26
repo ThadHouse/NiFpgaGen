@@ -1,9 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Languages\C\GlobalGetFunctionDeclaration.txt" />
+    <None Remove="Languages\C\GlobalSetFunctionDeclaration.txt" />
+    <None Remove="Languages\C\Header.txt" />
+    <None Remove="Languages\C\InstanceGetFunctionDeclaration.txt" />
+    <None Remove="Languages\C\InstanceSetFunctionDeclaration.txt" />
+    <None Remove="Languages\C\StructDeclaration.txt" />
+    <None Remove="Languages\C\SystemGetFunctionDeclaration.txt" />
+    <None Remove="Languages\C\SystemSetFunctionDeclaration.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Languages\C\GlobalGetFunctionDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\GlobalSetFunctionDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\Header.txt" />
+    <EmbeddedResource Include="Languages\C\InstanceGetFunctionDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\InstanceSetFunctionDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\StructDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\SystemGetFunctionDeclaration.txt" />
+    <EmbeddedResource Include="Languages\C\SystemSetFunctionDeclaration.txt" />
+  </ItemGroup>
 
 </Project>

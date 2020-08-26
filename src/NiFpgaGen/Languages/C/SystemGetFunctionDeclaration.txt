@@ -1,0 +1,1 @@
+{{status_type}} {{prefix}}_{{class_name}}_{{function_name}}(uint8_t sys_index, {{var_type}} value);

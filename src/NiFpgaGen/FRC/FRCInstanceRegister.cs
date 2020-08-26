@@ -14,7 +14,7 @@ namespace NiFpgaGen.FRC
 
         public int OffsetCount => m_offsets.Count;
 
-        private Dictionary<int, uint> m_offsets = new Dictionary<int, uint>();
+        private readonly Dictionary<int, uint> m_offsets = new Dictionary<int, uint>();
 
         public FRCInstanceRegister(string name, Register baseRegister, int index)
         {

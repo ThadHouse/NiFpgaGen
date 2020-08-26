@@ -1,5 +1,6 @@
 ﻿using NiFpgaGen.DataTypes;
 using NiFpgaGen.FRC;
+using NiFpgaGen.Languages.C;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -81,6 +82,15 @@ namespace NiFpgaGen
             }
 
             FRCClass.ValidateClasses(frcRegisters);
+
+            var tempalteMapper = new CLanguageTemplates();
+
+            foreach (var cls in frcRegisters)
+            {
+
+            }
+
+            
 
             //var frcMapping = new FRCMapping(registerList);
 

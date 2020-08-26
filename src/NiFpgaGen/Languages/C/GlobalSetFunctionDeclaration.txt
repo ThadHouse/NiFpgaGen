@@ -1,0 +1,1 @@
+{{status_type}} {{prefix}}_{{class_name}}_{{function_name}}({{var_type}}{{#is_by_ref}}*{{/is_by_ref}} value);
